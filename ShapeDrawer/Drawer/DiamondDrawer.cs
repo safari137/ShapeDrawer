@@ -5,7 +5,7 @@ namespace ShapeDrawer.Drawer
     public class DiamondDrawer : DrawerBase
     {
         private int _labelIndex = 0;
-        private int _lineCount = 1;
+        private int _diamondRow = 1;
 
         public override void Draw()
         {
@@ -21,15 +21,17 @@ namespace ShapeDrawer.Drawer
 
         private void DrawDiamondTop()
         {
-            for (var i = 0; i < (LinesToDraw / 2 + 1); i++, _lineCount++)
+            var maxLength = LinesToDraw/2 + 1;
+
+            for (var i = 0; i < maxLength; i++, _diamondRow++)
             {
                 var line = AddSpaces(i);
                 for (var x = 0; x <= i; x++)
                 {
-                    if (!IsLabelRow(_lineCount))
+                    if (!IsLabelRow(_diamondRow))
                         line += "X ";
                     else
-                        line += GetLabelCharacter(x, _lineCount, _lineCount);
+                        line += GetLabelCharacter(x, _diamondRow, _diamondRow);
                 }
                 Console.WriteLine(line);
             }
@@ -38,18 +40,19 @@ namespace ShapeDrawer.Drawer
         private void DrawDiamondBottom()
         {
             var triangleRow = 1;
+            var maxLength = LinesToDraw/2 - 1;
 
-            for (var i = (LinesToDraw/2 - 1); i >= 0; i--,triangleRow++,_lineCount++)
+            for (var i = maxLength; i >= 0; i--, triangleRow++, _diamondRow++)
             {
                 var line = AddSpaces(i);
                 var characterIndex = 0;
 
                 for (var x = i; x >= 0; x--)
                 {
-                    if (!IsLabelRow(_lineCount))
+                    if (!IsLabelRow(_diamondRow))
                         line += "X ";
                     else
-                        line += GetLabelCharacter(characterIndex++, _lineCount, triangleRow);
+                        line += GetLabelCharacter(characterIndex++, _diamondRow, triangleRow);
                 }
 
                 Console.WriteLine(line);

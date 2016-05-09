@@ -53,8 +53,7 @@ namespace ShapeDrawer.UI
                 return true;
             }
 
-            ConsoleTool.ShowError(
-               "Shape cannot be drawn.  Ensure that the height of the shape is greater than or equal to the row you print the label on.  Diamonds must have an odd number of rows");
+            ConsoleTool.ShowError("Shape cannot be drawn.  Diamonds must have an odd number of rows");
 
             return false;
         }
